@@ -4,39 +4,27 @@ function readLine() {
     return new Promise((resolve) => rl.once("line", (line) => resolve(line.trim())));
 }
 
-const max = 30;
-let cnt = 0;
-let a = 0;
-
 // HappyNumber
 async function main() {
     const input = await readLine();
     let n = parseInt(input, 10);
-
-    let ans = convert(n);
-    // console.log(`ans = ${ans}`);
-    console.log(ans === 1 ? 'Yes' : 'No');
+    let history = new Set();
+    while (n !== 1 && !history.has(n)) {
+        history.add(n);
+        n = convert(n);
+    }
+    // console.log(`n = ${n}`);
+    console.log(n === 1 ? 'Yes' : 'No');
     rl.close();
 }
 
 function convert(n) {
-    while (a !== 1) {
-        let s = n.toString();
-        let l = s.length;
-        a = 0;
-        for (let i = 0; i < l; i++) {
-            a += Number(s[i]) ** 2;
-        }
-        // console.log(`a = ${a}`);
-        if (a === 1) {
-            break;
-        } else {
-            if (cnt === max) break;
-            cnt++;
-            convert(a);
-        }
+    let s = n.toString();
+    let total = 0;
+    for (let i = 0; i < s.length; i++) {
+        total += Number(s[i]) ** 2;
     }
-    return a;
+    return total;
 }
 
 main()
