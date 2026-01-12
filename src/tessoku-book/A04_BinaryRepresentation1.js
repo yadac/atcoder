@@ -13,6 +13,17 @@ for (let i = 9; i >= 0; i--) {
 }
 // console.log(s);
 
+let s2 = '';
+let syo = N;
+let amari = 0;
+while (syo !== 0) {
+    amari = Math.floor(syo % 2);
+    syo = Math.floor(syo / 2);
+    s2 = amari + s2;
+    // console.log(`syo = ${syo}, amari = ${amari}`);
+}
+// console.log(s2.padStart(10, '0'));
+
 // 2 > 10
 let sum = 0;
 for (let i = 9; i >= 0; i--) {
