@@ -4,10 +4,12 @@ const lines = input.split('\n');
 const [N, Q] = lines[0].split(' ').map(Number);
 const guests = lines[1].split(' ').map(Number);
 const sumGuests = new Int32Array(N + 1);
+let prev = 0;
 
 // 累積和
-for (let i = 1; i < guests.length; i++) {
-    sumGuests[i] = guests[i - 1] + guests[i];
+for (let i = 0; i < guests.length; i++) {
+    prev += guests[i];
+    sumGuests[i] = prev;
 }
 
 // console.log(sumGuests);
